@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 class TODOAdapter extends RecyclerView.Adapter<TODOAdapter.ViewHolder> {
 
-    ArrayList<Todo> todos;
+    List<Todo> todos;
 
-    public TODOAdapter(ArrayList<Todo> todos) {
+    public TODOAdapter(List<Todo> todos) {
         this.todos = todos;
     }
 
@@ -26,7 +26,7 @@ class TODOAdapter extends RecyclerView.Adapter<TODOAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TODOAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.todoPrio.setText(Integer.toString(todos.get(i).getTodoPrio()));
+        viewHolder.todoPrio.setText(todos.get(i).getTodoPrio());
         viewHolder.todoName.setText(todos.get(i).getTodoName());
 
 

@@ -1,5 +1,6 @@
 package com.example.dbtry;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    ArrayList<Todo> todos;
+    //ArrayList<Todo> todos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,20 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 
-        todos = new ArrayList<>();
+        /*todos = new ArrayList<>();
         for (int i = 0; i< 10 ; i++)
         {
             Todo todo = new Todo(1, "Todo" + i + "neve");
             todos.add(todo);
         }
+        */
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                .allowMainThreadQueries() // borzalmas, sose használd prodáksönbe!! csak teszt jelleggel használd!
+                // .fallbackToDestructiveMigration() - majdkésőbb
+                .build();
+
+        List<Todo> todos = db.todoDAO().getAllUsers();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TODOAdapter(todos);

@@ -1,5 +1,7 @@
 package com.example.dbtry;
 
+import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +24,17 @@ public class CreateTODO extends AppCompatActivity {
         todoPrio = findViewById(R.id.todo_prio);
         addButton = findViewById(R.id.add_button);
 
+        final AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "production")
+                .allowMainThreadQueries() // borzalmas, sose használd prodáksönbe!! csak teszt jelleggel használd!
+                // .fallbackToDestructiveMigration() - majdkésőbb
+                .build();
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // com.example.dbtry.Todo save to DB
+                Todo todo = new Todo(todoPrio.getText().toString(),todoName.getText().toString());
+                db.todoDAO().insertAll(todo);
+                startActivity(new Intent(CreateTODO.this, MainActivity.class));
             }
         });
 
