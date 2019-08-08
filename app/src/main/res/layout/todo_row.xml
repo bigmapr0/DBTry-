@@ -6,9 +6,17 @@
     android:padding="12dp">
 
     <TextView
+        android:id="@+id/todo_prio"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
         android:id="@+id/todo_name"
         android:textSize="24sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
 
 </LinearLayout>

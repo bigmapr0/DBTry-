@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 class TODOAdapter extends RecyclerView.Adapter<TODOAdapter.ViewHolder> {
 
-    ArrayList<String> todos;
+    ArrayList<Todo> todos;
 
-    public TODOAdapter(ArrayList<String> todos) {
+    public TODOAdapter(ArrayList<Todo> todos) {
         this.todos = todos;
     }
 
@@ -26,7 +26,9 @@ class TODOAdapter extends RecyclerView.Adapter<TODOAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TODOAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.todoName.setText(todos.get(i));
+        viewHolder.todoPrio.setText(Integer.toString(todos.get(i).getTodoPrio()));
+        viewHolder.todoName.setText(todos.get(i).getTodoName());
+
 
     }
 
@@ -36,10 +38,12 @@ class TODOAdapter extends RecyclerView.Adapter<TODOAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView todoPrio;
         public TextView todoName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            todoPrio = itemView.findViewById(R.id.todo_prio);
             todoName = itemView.findViewById(R.id.todo_name);
         }
     }

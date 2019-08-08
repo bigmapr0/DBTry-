@@ -25,7 +25,7 @@ public class CreateTODO extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Todo save to DB
+                // com.example.dbtry.Todo save to DB
             }
         });
 

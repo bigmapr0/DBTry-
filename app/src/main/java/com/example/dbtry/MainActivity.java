@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
 
-    ArrayList<String> todos;
+    ArrayList<Todo> todos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         todos = new ArrayList<>();
         for (int i = 0; i< 10 ; i++)
         {
-            todos.add("Daniel #" + i);
+            Todo todo = new Todo(1, "Todo" + i + "neve");
+            todos.add(todo);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
